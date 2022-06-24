@@ -11,11 +11,11 @@ def redis_session_key(day, session_id):
     """Создаёт ключ для хранения в redis, используя дату и ключ сессии.
     :return: ключ-строка
     """
-    return 'page:index:counter:' + str(day) + ':' + str(session_id)
+    return f'page:index:counter: {str(day)}:{str(session_id)}'
 
 
 def check_session_id(day, session_id):
-    """Проверяет зарегистрирована ли сессия с таким id.
+    """Проверяет существование сессии таким id.
     :return: True/False
     """
     if r.get(redis_session_key(day, session_id)):

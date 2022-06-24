@@ -1,36 +1,5 @@
-import hashlib
-from os import urandom
-from flask import Flask
-from flask import request
-from flask import Response
-from time import strftime
 from redis.sentinel import Sentinel
-
-
-def redis_session_key(day, session_id):
-    """Создаёт ключ для хранения в redis, используя дату и ключ сессии.
-    :return: ключ-строка
-    """
-    return 'page:index:counter:' + str(day) + ':' + str(session_id)
-
-
-def check_session_id(day, session_id):
-    """Проверяет зарегистрирована ли сессия с таким id.
-    :return: True/False
-    """
-    if r.get(redis_session_key(day, session_id)):
-        return True
-    return False
-
-
-def create_session_id():
-    """Генерирует сессионный ключ. Его стоит проверить на уникальность
-    перед выдачей ключа пользователю.
-    :return: строка
-    """
-    hash = hashlib.sha512(str(urandom(128)).encode('utf-8'))
-    session_id = str(hash.hexdigest())
-    return session_id
+from ad import *
 
 
 app = Flask(__name__)

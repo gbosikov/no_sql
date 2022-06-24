@@ -24,8 +24,7 @@ def check_session_id(day, session_id):
 
 
 def create_session_id():
-    """Генерирует сессионный ключ. Его стоит проверить на уникальность
-    перед выдачей ключа пользователю.
+    """Генерирует ключ сессии.
     :return: строка
     """
     hash = hashlib.sha512(str(urandom(128)).encode('utf-8'))
